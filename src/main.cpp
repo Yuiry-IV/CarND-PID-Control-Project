@@ -2,6 +2,12 @@
 #include <uWS/uWS.h>
 #include <iostream>
 #include <string>
+
+#include <sstream>
+#include <fstream>
+
+#include <cstdlib>
+
 #include "json.hpp"
 #include "PID.h"
 
@@ -31,20 +37,31 @@ string hasData(string s) {
 }
 
 int main() {
+  
+  unsigned long count=1;
   uWS::Hub h;
 
   PID pid_steering;
   /**
    * lesson 12 step 11->.
    */
-  pid_steering.Init( 0.2/2, 0.004/8, 3.0/2 );
+  pid_steering.Init( 0.2, 0.004, 3.0 );
+  
+  // final 
+  // pid_steering.Init( 0.2/2, 0.004/8, 3.0/2 );
+  
+  // video_set1.gif
+  // pid_steering.Init( 0.5, 0.1, 3.0 );
+  
+  // set 2 
+  // pid_steering.Init( 0.1, 0.0, 0.0 );
   
   PID pid_throttle;  
   pid_throttle.Init( 0.1, 0.002, 0.0 );
   
   const double max_velocity = 40.0;
 
-  h.onMessage([&pid_steering, &pid_throttle, &max_velocity](uWS::WebSocket<uWS::SERVER> ws, char *data, size_t length, 
+  h.onMessage([&pid_steering, &pid_throttle, &max_velocity, &count](uWS::WebSocket<uWS::SERVER> ws, char *data, size_t length, 
                      uWS::OpCode opCode) {
     // "42" at the start of the message means there's a websocket message event.
     // The 4 signifies a websocket message
@@ -63,6 +80,17 @@ int main() {
           double speed = std::stod(j[1]["speed"].get<string>());
           // double angle = std::stod(j[1]["steering_angle"].get<string>());
           std::string image=j[1]["image"];
+          
+          std::ostringstream ss;
+          ss<<"base64 -d ./image.txt > ../data/"<<count<<".jpg";
+          count++;
+          std::ofstream myfile;
+          myfile.open ("image.txt");
+          myfile<<image;
+          myfile.flush();
+          myfile.close();
+          
+          std::system(ss.str().c_str());
           
           /**
            * TODO: Calculate steering value here, remember the steering value is
