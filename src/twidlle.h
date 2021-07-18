@@ -1,3 +1,5 @@
+#ifndef TWIDLLE_H
+#define TWIDLLE_H
 
 class twidlle {
 public:
@@ -62,3 +64,5 @@ struct context{
 };
 
 extern void set_twiddle( uWS::Hub &h, twidlle &tw, PID &pid_steering, PID &pid_throttle, const double &max_velocity, context &ctx );
+
+#endif // TWIDLLE

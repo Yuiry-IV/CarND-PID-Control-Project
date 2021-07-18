@@ -7,7 +7,7 @@
 
 #include "json.hpp"
 #include "PID.h"
-#include "aux.h"
+#include "p8_func_aux.h"
 
 void do_capture_image(const std::string &image){
    static unsigned long count = 0;

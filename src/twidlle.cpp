@@ -8,7 +8,7 @@
 
 #include "twidlle.h"
 
-#include "aux.h"
+#include "p8_func_aux.h"
 
 /*
 #include <random>

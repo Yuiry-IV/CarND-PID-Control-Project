@@ -118,5 +118,14 @@ During project implementation I've verified what is responsibility of each compo
   ```./pid manual Kp Ki Kd``` - to start manually selected hyper-parameters and capture front camera images.
 
 
+#### Fixes
+
+  Reviewer has beep reported that file ***aux.h*** can't be found:
+
+   [ ![submit error](./img/01234.bmp) ](./img/01234.PNG)
+
+   aux.h may conflict with system file name. That cause that I've renamed it to p8_func_aux.h. Also guard defines has been added to headers.
+
+---
 
 Project has been implemented by Yuriy Ivanov.

@@ -1,3 +1,6 @@
+#ifndef P8_FUNC_AUX_H
+#define P8_FUNC_AUX_H
+
 #include <cmath>
 
 #include <string>
@@ -23,3 +26,6 @@ inline std::string hasData(std::string s) {
   }
   return "";
 }
+
+
+#endif // P8_FUNC_AUX_H
