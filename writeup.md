@@ -126,6 +126,12 @@ During project implementation I've verified what is responsibility of each compo
 
    aux.h may conflict with system file name. That cause that I've renamed it to p8_func_aux.h. Also guard defines has been added to headers.
 
+   Changes has been checked in Udacity workspace:
+
+   ![clone](./img/20_clone.png)
+
+   ![cmake make](./img/20_cmake_make.png)
+
 ---
 
 Project has been implemented by Yuriy Ivanov.
