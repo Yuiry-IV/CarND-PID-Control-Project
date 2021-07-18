@@ -39,8 +39,8 @@ int main(int argc, char *argv[]) {
 
    bool request_reset=true;
 
-   const double Kp = ( (argc == 5) && (std::string(argv[1])=="manual") ) ? std::stod(std::string(argv[2])) : 0.075;
-   const double Ki = ( (argc == 5) && (std::string(argv[1])=="manual") ) ? std::stod(std::string(argv[3])) : 0.0005*4;
+   const double Kp = ( (argc == 5) && (std::string(argv[1])=="manual") ) ? std::stod(std::string(argv[2])) : 0.1;
+   const double Ki = ( (argc == 5) && (std::string(argv[1])=="manual") ) ? std::stod(std::string(argv[3])) : 0.0005;
    const double Kd = ( (argc == 5) && (std::string(argv[1])=="manual") ) ? std::stod(std::string(argv[4])) : 1.5;
    const bool capture_the_image=( (argc == 5) && (std::string(argv[1])=="manual") ) ? true : false;
 

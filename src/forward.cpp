@@ -24,20 +24,9 @@ void do_capture_image(const std::string &image){
 
 
 void set_forward( uWS::Hub &h, PID &pid_steering, PID &pid_throttle, const double &max_velocity, const bool &capture_image ) {
-   /// lesson 12 step 11->
-   // pid_steering.Init( 0.2, 0.004, 3.0 );
     
    // final
    // pid_steering.Init( 0.2/2, 0.004/8, 3.0/2 );
-
-   // video_set1.gif
-   // pid_steering.Init( 0.5, 0.1, 3.0 );
-
-   // 03_00_01_00_00
-   // pid_steering.Init( 0.1, 0.0, 0.0 );
-
-   // 03_01_01_0001_00
-   // pid_steering.Init( 0.1, 0.001, 0.0 ); 
 
   h.onMessage([&pid_steering, 
                &pid_throttle, 
