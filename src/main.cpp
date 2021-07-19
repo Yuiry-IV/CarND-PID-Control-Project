@@ -28,7 +28,7 @@ using std::string;
 
 int main(int argc, char *argv[]) {
 
-   const double max_velocity = 45.0;
+   const double max_velocity = 30.0;
    PID pid_throttle;
    
    uWS::Hub h;
@@ -39,8 +39,8 @@ int main(int argc, char *argv[]) {
 
    bool request_reset=true;
 
-   const double Kp = ( (argc == 5) && (std::string(argv[1])=="manual") ) ? std::stod(std::string(argv[2])) : 0.21;
-   const double Ki = ( (argc == 5) && (std::string(argv[1])=="manual") ) ? std::stod(std::string(argv[3])) : 0.003;
+   const double Kp = ( (argc == 5) && (std::string(argv[1])=="manual") ) ? std::stod(std::string(argv[2])) : 0.125;
+   const double Ki = ( (argc == 5) && (std::string(argv[1])=="manual") ) ? std::stod(std::string(argv[3])) : 0.002;
    const double Kd = ( (argc == 5) && (std::string(argv[1])=="manual") ) ? std::stod(std::string(argv[4])) : 3.1;
    const bool capture_the_image=( (argc == 5) && (std::string(argv[1])=="manual") ) ? true : false;
 
