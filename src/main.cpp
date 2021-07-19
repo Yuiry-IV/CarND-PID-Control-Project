@@ -39,14 +39,15 @@ int main(int argc, char *argv[]) {
 
    bool request_reset=true;
 
-   const double Kp = ( (argc == 5) && (std::string(argv[1])=="manual") ) ? std::stod(std::string(argv[2])) : 0.1;
-   const double Ki = ( (argc == 5) && (std::string(argv[1])=="manual") ) ? std::stod(std::string(argv[3])) : 0.0005;
-   const double Kd = ( (argc == 5) && (std::string(argv[1])=="manual") ) ? std::stod(std::string(argv[4])) : 1.5;
+   const double Kp = ( (argc == 5) && (std::string(argv[1])=="manual") ) ? std::stod(std::string(argv[2])) : 0.21;
+   const double Ki = ( (argc == 5) && (std::string(argv[1])=="manual") ) ? std::stod(std::string(argv[3])) : 0.003;
+   const double Kd = ( (argc == 5) && (std::string(argv[1])=="manual") ) ? std::stod(std::string(argv[4])) : 3.1;
    const bool capture_the_image=( (argc == 5) && (std::string(argv[1])=="manual") ) ? true : false;
 
    if( (argc==2) && (std::string(argv[1])=="twiddle") ){
+      const double twidlle_velocity = max_velocity;
       pid_throttle.Init(0.1, 0.002, 0.0);
-      set_twiddle( h, twidlle_, pid_steering, pid_throttle, 10.1, ctx_ );
+      set_twiddle( h, twidlle_, pid_steering, pid_throttle, twidlle_velocity, ctx_ );
    }
    else {
       std::cout<<"auto{"<<Kp<<","<<Ki<<","<<Kd<<"}"<<std::endl;

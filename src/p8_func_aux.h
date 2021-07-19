@@ -27,5 +27,9 @@ inline std::string hasData(std::string s) {
   return "";
 }
 
+inline double convert_max_velocity(const double &max_velocity, const double &cte){
+   return max_velocity/(std::abs(cte)<1.0?1.0:std::abs(cte));
+}
+
 
 #endif // P8_FUNC_AUX_H

@@ -63,6 +63,8 @@ void set_twiddle( uWS::Hub &h, twidlle &tw, PID &pid_steering, PID &pid_throttle
                ctx.accum_error[1].push_back( cte*cte );
              }
              
+             //std::cout<<ctx.count<<','<<ctx.accum_error[0].size()<<","<<ctx.accum_error[1].size()<<std::endl;
+             
              if( ctx.accum_error[0].size()>=tw.samples && ctx.accum_error[1].size()>=tw.samples ){
                
                while( ctx.accum_error[0].size()>tw.samples-2 ) ctx.accum_error[0].pop_front();
@@ -82,10 +84,19 @@ void set_twiddle( uWS::Hub &h, twidlle &tw, PID &pid_steering, PID &pid_throttle
              /// update an steering error
              pid_steering.UpdateError(cte);
              const double total_error = pid_steering.TotalError();
-             const double steer_value = std::max( -0.25, std::min( 0.25, total_error ) );
+             const double steer_value = std::max( -1.0, std::min( 1.0, total_error ) );
              
-             pid_throttle.UpdateError( speed - max_velocity  );
+             pid_throttle.UpdateError( speed - convert_max_velocity( max_velocity,cte )  );
              const double throttle = pid_throttle.TotalError();
+             
+             #if DEBUG1
+             std::cout << "CTE:" << cte;
+             std::cout << ";Steering:" << steer_value;
+             std::cout <<";speed:" << speed;
+             std::cout <<";throttle:"<<throttle;
+             std::cout << std::endl;
+             #endif 
+
              
              nlohmann::json msgJson;
              msgJson["steering_angle"] = steer_value;
@@ -95,6 +106,11 @@ void set_twiddle( uWS::Hub &h, twidlle &tw, PID &pid_steering, PID &pid_throttle
              ctx.count++;
              ws.send(msg.data(), msg.length(), uWS::OpCode::TEXT);
            }  // end "telemetry" if
+         } else {
+           std::cout<<length <<std::endl;
+           // Manual driving
+           std::string msg = "42[\"manual\",{}]";
+           ws.send(msg.data(), msg.length(), uWS::OpCode::TEXT);
          }
       }// end websocket message if
    }); // end h.onMessage

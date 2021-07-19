@@ -22,7 +22,6 @@ void do_capture_image(const std::string &image){
    ++count;
 }
 
-
 void set_forward( uWS::Hub &h, PID &pid_steering, PID &pid_throttle, const double &max_velocity, const bool &capture_image ) {
     
    // final
@@ -67,12 +66,19 @@ void set_forward( uWS::Hub &h, PID &pid_steering, PID &pid_throttle, const doubl
           const double steer_value = std::max( -1.0, std::min( 1.0, total_error ) ); 
   
           /// update throttle error
-          pid_throttle.UpdateError( speed-max_velocity );
+          pid_throttle.UpdateError( speed-convert_max_velocity(max_velocity,cte) );
           /// get throttle TotalError
           const double throttle = pid_throttle.TotalError();
+          
           // DEBUG1
-          // std::cout << "CTE: " << cte << " Steering: " << steer_value <<":" << speed <<":throttle:"<<throttle<< std::endl;
-
+          if( (cte < -2.0) || (cte > 2.0) ){
+             std::cout << "CTE:" << cte;
+             std::cout << ";Steering:" << steer_value;
+             std::cout <<";speed:" << speed;
+             std::cout <<";throttle:"<<throttle;
+             std::cout << std::endl;
+          }
+          
           nlohmann::json msgJson;
           msgJson["steering_angle"] = steer_value;
           msgJson["throttle"] = throttle;

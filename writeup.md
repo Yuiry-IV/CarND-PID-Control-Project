@@ -119,7 +119,7 @@ During project implementation I've verified what is responsibility of each compo
 
 
 #### Fixes
-
+  * Review #1
   Reviewer has beep reported that file ***aux.h*** can't be found:
 
    [ ![submit error](./img/01234.bmp) ](./img/01234.PNG)
@@ -131,6 +131,13 @@ During project implementation I've verified what is responsibility of each compo
    ![clone](./img/20_clone.png)
 
    ![cmake make](./img/20_cmake_make.png)
+
+  * Review #2
+
+  Car is leaving drivable part of road:  
+  [![error 2 ](./img/failpid_thumbnail.png)](failpid.jpg)
+
+  To fix this I've adjust hyper-parameters of PID controller: proportional has been increased to 0.21 - this allow car keep close to road center, integral to 0.003 - this allow car to reduce oscillations, differential to 3.1 - this make trajectory more stable. Also I've introduce dependency in throttle controller, it will reduce speed in case if CTE increase to much, please take a look: [./src/p8_func_aux.h](./src/p8_func_aux.h) lines 30..32.  
 
 ---
 
