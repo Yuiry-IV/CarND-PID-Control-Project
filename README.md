@@ -8,6 +8,6 @@ Goal of this project to implement a PID controller in C++ to maneuver the vehicl
 
 1. For project description, please open [writeup.md](./writeup.md)
 1. For project environment details please follow [original README.md](https://github.com/udacity/CarND-PID-Control-Project/blob/master/README.md)
-2. Video [![track video](https://i9.ytimg.com/vi/prxWlrlZJ1I/mq2.jpg?sqp=CNjZ0IcG&rs=AOn4CLCXvQ5vPDnaAXUCDsldu16n3twosw)](https://youtu.be/prxWlrlZJ1I)
+2. Video [![track video](https://i9.ytimg.com/vi/prxWlrlZJ1I/mq2.jpg?sqp=CNjZ0IcG&rs=AOn4CLCXvQ5vPDnaAXUCDsldu16n3twosw)](https://youtu.be/prxWlrlZJ1I) [Fix2](https://youtu.be/K-WN0vsgyUc)
 
 Project has been implemented by Yuriy Ivanov.
